@@ -1,6 +1,8 @@
 package cs301.up.edu.facemaker;
 //@author Alexa Baldwin
 
+import android.content.Context;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;

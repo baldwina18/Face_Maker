@@ -188,11 +188,39 @@
 
         </LinearLayout>
 
-        <SurfaceView
+        <Space
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="#FF000000"
+            android:visibility="visible"
+            android:layout_gravity="bottom" />
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/faceSurfaceView"
-            android:layout_weight="2" />
+            android:layout_weight="2">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal" />
+
+            <cs301.up.edu.facemaker.Face
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/faceSurfaceView"
+                android:layout_weight="6" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
