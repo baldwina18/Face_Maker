@@ -11,9 +11,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.Spinner;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
 
+    protected Spinner hairSpinner;
+    protected Spinner eyeSpinner;
+    protected Spinner noseSpinner;
+    protected Button randomFaceButton;
+    protected SeekBar redSeekBar;
+    protected SeekBar greenSeekBar;
+    protected SeekBar blueSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +41,41 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+
+        hairSpinner = (Spinner)findViewById(R.id.hairSpinner);
+        String[] hairNames = getResources().getStringArray(R.array.hair_names);
+        ArrayAdapter hairAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, hairNames);
+        hairAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        hairSpinner.setAdapter(hairAdapter);
+
+        eyeSpinner = (Spinner)findViewById(R.id.eyeSpinner);
+        String[] eyeNames = getResources().getStringArray(R.array.eye_names);
+        ArrayAdapter eyeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, eyeNames);
+        eyeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        eyeSpinner.setAdapter(eyeAdapter);
+
+        noseSpinner = (Spinner)findViewById(R.id.noseSpinner);
+        String[] noseNames = getResources().getStringArray(R.array.nose_names);
+        ArrayAdapter noseAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, noseNames);
+        noseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        noseSpinner.setAdapter(noseAdapter);
+
+        randomFaceButton = (Button)findViewById(R.id.randomFaceButton);
+        randomFaceButton.setOnClickListener(this);
+
+        redSeekBar = (SeekBar)findViewById(R.id.redSeekBar);
+        redSeekBar.setOnSeekBarChangeListener(this);
+
+        greenSeekBar = (SeekBar)findViewById(R.id.greenSeekBar);
+        greenSeekBar.setOnSeekBarChangeListener(this);
+
+        blueSeekBar = (SeekBar)findViewById(R.id.blueSeekBar);
+        blueSeekBar.setOnSeekBarChangeListener(this);
     }
 
     @Override
@@ -54,4 +100,25 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId()==R.id.randomFaceButton) {
+
+        }
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+        //not used
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+        //not used
+    }
 }

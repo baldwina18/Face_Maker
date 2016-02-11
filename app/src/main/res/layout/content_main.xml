@@ -32,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Select a feature to edit its color:"
-                android:id="@+id/radioButtonTextView" />
+                android:id="@+id/radioButtonTextView"
+                android:textAlignment="center" />
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -74,17 +75,21 @@
                 android:layout_weight="0" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Red Value"
-                android:id="@+id/redValueTextView" />
+                android:id="@+id/redValueTextView"
+                android:background="#ef0f0f"
+                android:textAlignment="center"
+                android:textColor="#FFFFFFFF" />
 
             <SeekBar
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/redSeekBar"
-                android:layout_weight=".5" />
+                android:layout_weight=".5"
+                android:max="255" />
 
             <Space
                 android:layout_width="match_parent"
@@ -92,17 +97,21 @@
                 android:layout_gravity="center_horizontal" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Green Value"
-                android:id="@+id/greenValueTextView" />
+                android:id="@+id/greenValueTextView"
+                android:textAlignment="center"
+                android:textColor="#FFFFFFFF"
+                android:background="#2d6820" />
 
             <SeekBar
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/greenSeekBar"
-                android:layout_weight=".5" />
+                android:layout_weight=".5"
+                android:max="255" />
 
             <Space
                 android:layout_width="match_parent"
@@ -110,17 +119,21 @@
                 android:layout_gravity="center_horizontal" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Blue Value"
-                android:id="@+id/blueValueTextView" />
+                android:id="@+id/blueValueTextView"
+                android:textAlignment="center"
+                android:textColor="#FFFFFFFF"
+                android:background="#1f40c5" />
 
             <SeekBar
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/blueSeekBar"
-                android:layout_weight=".5" />
+                android:layout_weight=".5"
+                android:max="255" />
 
             <Space
                 android:layout_width="match_parent"
@@ -128,12 +141,13 @@
                 android:layout_gravity="center_horizontal" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Select Hair Style:"
                 android:id="@+id/hairTextView"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:textAlignment="center" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -142,26 +156,29 @@
                 android:layout_weight=".5" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Select Eyes&apos; Appearance:"
                 android:id="@+id/eyesTextView"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:textAlignment="center" />
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/eyeSpinner"
-                android:layout_weight=".5" />
+                android:layout_weight=".5"
+                android:touchscreenBlocksFocus="true" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Select Nose&apos;s Appearance:"
                 android:id="@+id/noseTextView"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:textAlignment="center" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -170,11 +187,12 @@
                 android:layout_weight=".5" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Select this button for a random face!"
-                android:id="@+id/buttonTextView" />
+                android:id="@+id/buttonTextView"
+                android:textAlignment="center" />
 
             <Button
                 android:layout_width="wrap_content"

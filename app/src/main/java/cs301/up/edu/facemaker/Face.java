@@ -17,10 +17,13 @@ public class Face extends SurfaceView {
     protected int eyeColor;
     protected int hairColor;
     protected int hairStyleIndex;
-    protected Path[] hairStyles;
+    protected Path[] hairStyles = new Path[3];
     protected int eyeStyle;
     protected int noseStyle;
-
+    protected Paint whitePaint;
+    protected Paint blackPaint;
+    protected Paint irisColor;
+    protected Paint faceColor;
 
     public Face(Context context) {
         super(context);
@@ -42,25 +45,21 @@ public class Face extends SurfaceView {
         setWillNotDraw(false);
     }
 
-    public void randomize() {
-        //randomize
+    public int randomize() {
+        return (int)(Math.random() * 3);
     }
 
     public void onDraw(Canvas canvas) {
-        drawHair(canvas);
-        Paint skinColor = new Paint();
-        skinColor.setColor(Color.BLUE);
-        Paint green = new Paint();
-        green.setColor(Color.GREEN);
-        canvas.drawOval(250.0f, 100.0f, 1000.0f, 1000.0f, skinColor);
-
-
-
+        setPaint();
+        //canvas.drawPath(hairStyles[0],whitePaint);
+        canvas.drawOval(250.0f, 100.0f, 1000.0f, 1000.0f, faceColor);
+        drawEyes(canvas, randomize()+1);
+        drawNose(canvas, randomize()+1);
+        canvas.drawArc(450.0f,600.0f,800.0f,850.0f,0,180,true,blackPaint);
     }
 
     public void drawHair(Canvas canvas) {
-        Paint redPaint = new Paint();
-        redPaint.setColor(Color.RED);
+
         Path spikedHair = new Path();
         spikedHair.moveTo(275.0f, 400.0f);
         spikedHair.lineTo(350.0f, 50.0f);
@@ -72,8 +71,95 @@ public class Face extends SurfaceView {
         spikedHair.lineTo(900.0f,50.0f);
         spikedHair.lineTo(975.0f,400.0f);
 
-        //hairStyles[0] = spikedHair;
-        canvas.drawPath(spikedHair, redPaint);
+        hairStyles[0] = spikedHair;
+
+
+        Path mohawk = new Path();
+        mohawk.moveTo(400.0f, 200.0f);
+        mohawk.lineTo(625.0f, 25.0f);
+        mohawk.lineTo(850.0f,200.0f);
+        hairStyles[1] = mohawk;
+
+
+
+        Path longHair = new Path();
+        longHair.moveTo(250.0f, 800.0f);
+        longHair.lineTo(250.0f, 90.0f);
+        longHair.lineTo(1000.0f,90.0f);
+        longHair.lineTo(1000.0f,800.0f);
+        longHair.lineTo(850.0f,1000.0f);
+        longHair.lineTo(750.0f,900.0f);
+        longHair.lineTo(650.0f,1050.0f);
+        longHair.lineTo(550.0f,950.0f);
+        longHair.lineTo(400.0f,1000.0f);
+        longHair.lineTo(250.0f, 800.0f);
+        hairStyles[2] = longHair;
+
     }
+    public void setPaint() {
+        whitePaint = new Paint();
+        whitePaint.setColor(Color.WHITE);
+        blackPaint = new Paint();
+        blackPaint.setColor(Color.BLACK);
+        irisColor = new Paint();
+        irisColor.setColor(Color.GREEN);
+        faceColor = new Paint();
+        faceColor.setColor(Color.BLUE);
+    }
+
+    public void drawEyes(Canvas canvas, int eyeStyle) {
+
+        if (eyeStyle==1) { //wide eyes
+            canvas.drawOval(425.0f,300.0f,575.0f,400.0f,whitePaint);
+            canvas.drawOval(700.0f,300.0f,850.0f,400.0f,whitePaint);
+        } else if (eyeStyle==2) { //diamond eyes
+            Path diamondEyeLeft = new Path(); //left eye
+            diamondEyeLeft.moveTo(425.0f, 350.0f);
+            diamondEyeLeft.lineTo(500.0f, 250.0f);
+            diamondEyeLeft.lineTo(575.0f, 350.0f);
+            diamondEyeLeft.lineTo(500.0f, 450.0f);
+            diamondEyeLeft.lineTo(425.0f, 350.0f);
+            canvas.drawPath(diamondEyeLeft, whitePaint);
+            Path diamondEyeRight = new Path(); //right eye
+            diamondEyeRight.moveTo(700.0f, 350.0f);
+            diamondEyeRight.lineTo(775.0f, 250.0f);
+            diamondEyeRight.lineTo(850.0f, 350.0f);
+            diamondEyeRight.lineTo(775.0f, 450.0f);
+            diamondEyeRight.lineTo(700.0f, 350.0f);
+            canvas.drawPath(diamondEyeRight, whitePaint);
+        } else if (eyeStyle==3) { //pretty eyes
+            canvas.drawArc(425.0f,275.0f,575.0f,410.0f,180,180,false,whitePaint);
+            canvas.drawArc(700.0f,275.0f,850.0f,410.0f,180,180,false,whitePaint);
+        }
+        //center of eye
+        canvas.drawOval(450.0f,300.0f,550.0f,400.0f,irisColor);
+        canvas.drawOval(725.0f, 300.0f, 825.0f, 400.0f, irisColor);
+        canvas.drawOval(460.0f, 310.0f, 540.0f, 390.0f, blackPaint);
+        canvas.drawOval(735.0f, 310.0f, 815.0f, 390.0f, blackPaint);
+    }
+
+
+    public void drawNose(Canvas canvas, int noseStyle) {
+
+        if (noseStyle==1) { //triangle nose
+            Path triangleNose = new Path();
+            triangleNose.moveTo(575.0f,600.0f);
+            triangleNose.lineTo(625.0f, 500.0f);
+            triangleNose.lineTo(675.0f, 600.0f);
+            canvas.drawPath(triangleNose, blackPaint);
+        } else if (noseStyle==2) { //pig nose
+            canvas.drawOval(550.0f,500.0f,600.0f,600.0f,blackPaint);
+            canvas.drawOval(650.0f,500.0f,700.0f,600.0f,blackPaint);
+        } else if (noseStyle==3) { //normal nose
+            Path normalNose = new Path();
+            normalNose.moveTo(575.0f, 550.0f);
+            normalNose.lineTo(625.0f, 400.0f);
+            normalNose.lineTo(675.0f, 550.0f);
+            canvas.drawPath(normalNose, blackPaint);
+            canvas.drawArc(550.0f,500.0f,700.0f,625.0f,180,180,true,blackPaint);
+        }
+    }
+
+
 
 }

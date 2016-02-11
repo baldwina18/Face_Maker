@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="hair_names">
+        <item>Spiked Hair</item>
+        <item>Mohawk</item>
+        <item>Long Hair</item>
+    </string-array>
+
+    <string-array name="eye_names">
+        <item>Regular Eyes</item>
+        <item>Diamond Eyes</item>
+        <item>Pretty Eyes</item>
+    </string-array>
+
+    <string-array name="nose_names">
+        <item>Triangle Nose</item>
+        <item>Pig Nose</item>
+        <item>Regular Nose</item>
+    </string-array>
+
+
+</resources>
