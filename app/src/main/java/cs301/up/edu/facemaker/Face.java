@@ -24,41 +24,49 @@ public class Face extends SurfaceView {
     protected Paint blackPaint;
     protected Paint irisColor;
     protected Paint faceColor;
+    protected Paint hairStyleColor;
+
 
     public Face(Context context) {
         super(context);
         setWillNotDraw(false);
+        drawHair();
     }
 
     public Face(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(false);
+        drawHair();
     }
 
     public Face(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setWillNotDraw(false);
+        drawHair();
     }
 
     public Face(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         setWillNotDraw(false);
+        drawHair();
     }
 
-    public int randomize() {
-        return (int)(Math.random() * 3);
+    public void randomize() {
+        hairStyleIndex = (int)(Math.random()*3);
+        noseStyle = (int)(1+Math.random()*3);
+        eyeStyle = (int)(1+Math.random()*3);
     }
 
     public void onDraw(Canvas canvas) {
         setPaint();
-        //canvas.drawPath(hairStyles[0],whitePaint);
+        canvas.drawPath(hairStyles[hairStyleIndex],hairStyleColor);
         canvas.drawOval(250.0f, 100.0f, 1000.0f, 1000.0f, faceColor);
-        drawEyes(canvas, randomize()+1);
-        drawNose(canvas, randomize()+1);
+        drawEyes(canvas, eyeStyle);
+        drawNose(canvas, noseStyle);
         canvas.drawArc(450.0f,600.0f,800.0f,850.0f,0,180,true,blackPaint);
     }
 
-    public void drawHair(Canvas canvas) {
+    public void drawHair() {
 
         Path spikedHair = new Path();
         spikedHair.moveTo(275.0f, 400.0f);
@@ -70,17 +78,13 @@ public class Face extends SurfaceView {
         spikedHair.lineTo(800.0f, 100.0f);
         spikedHair.lineTo(900.0f,50.0f);
         spikedHair.lineTo(975.0f,400.0f);
-
         hairStyles[0] = spikedHair;
-
 
         Path mohawk = new Path();
         mohawk.moveTo(400.0f, 200.0f);
         mohawk.lineTo(625.0f, 25.0f);
         mohawk.lineTo(850.0f,200.0f);
         hairStyles[1] = mohawk;
-
-
 
         Path longHair = new Path();
         longHair.moveTo(250.0f, 800.0f);
@@ -94,7 +98,6 @@ public class Face extends SurfaceView {
         longHair.lineTo(400.0f,1000.0f);
         longHair.lineTo(250.0f, 800.0f);
         hairStyles[2] = longHair;
-
     }
     public void setPaint() {
         whitePaint = new Paint();
@@ -102,13 +105,14 @@ public class Face extends SurfaceView {
         blackPaint = new Paint();
         blackPaint.setColor(Color.BLACK);
         irisColor = new Paint();
-        irisColor.setColor(Color.GREEN);
+        irisColor.setColor(eyeColor);
         faceColor = new Paint();
-        faceColor.setColor(Color.BLUE);
+        faceColor.setColor(skinColor);
+        hairStyleColor = new Paint();
+        hairStyleColor.setColor(hairColor);
     }
 
     public void drawEyes(Canvas canvas, int eyeStyle) {
-
         if (eyeStyle==1) { //wide eyes
             canvas.drawOval(425.0f,300.0f,575.0f,400.0f,whitePaint);
             canvas.drawOval(700.0f,300.0f,850.0f,400.0f,whitePaint);

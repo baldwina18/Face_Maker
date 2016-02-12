@@ -33,41 +33,43 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Select a feature to edit its color:"
                 android:id="@+id/radioButtonTextView"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:background="#FF000000"
+                android:textColor="#FFFFFFFF" />
 
-            <RadioGroup
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/optionsRadioGroup">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:orientation="horizontal"
+                <RadioGroup
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/optionsRadioGroup"
+                    android:layout_weight="1">
 
                     <RadioButton
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Skin"
-                        android:id="@+id/skinRadioButton"
+                        android:text="Hair"
+                        android:id="@+id/hairRadioButton"
                         android:layout_weight="1" />
 
                     <RadioButton
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Eyes"
                         android:id="@+id/eyesRadioButton"
                         android:layout_weight="1" />
 
                     <RadioButton
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hair"
-                        android:id="@+id/hairRadioButton"
+                        android:text="Skin"
+                        android:id="@+id/skinRadioButton"
                         android:layout_weight="1" />
-                </LinearLayout>
-
-            </RadioGroup>
+                </RadioGroup>
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
@@ -147,7 +149,9 @@
                 android:text="Select Hair Style:"
                 android:id="@+id/hairTextView"
                 android:layout_weight="0"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:background="#FF000000"
+                android:textColor="#FFFFFFFF" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -162,7 +166,9 @@
                 android:text="Select Eyes&apos; Appearance:"
                 android:id="@+id/eyesTextView"
                 android:layout_weight="0"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:background="#FF000000"
+                android:textColor="#FFFFFFFF" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -178,7 +184,9 @@
                 android:text="Select Nose&apos;s Appearance:"
                 android:id="@+id/noseTextView"
                 android:layout_weight="0"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:background="#FF000000"
+                android:textColor="#FFFFFFFF" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -192,13 +200,17 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Select this button for a random face!"
                 android:id="@+id/buttonTextView"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:background="#FF000000"
+                android:textColor="#FFFFFFFF" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Random Face"
-                android:id="@+id/randomFaceButton" />
+                android:id="@+id/randomFaceButton"
+                android:background="#b7b1ba"
+                android:layout_gravity="center" />
 
             <Space
                 android:layout_width="match_parent"
@@ -228,7 +240,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/faceSurfaceView"
-                android:layout_weight="6" />
+                android:layout_weight="6"
+                android:background="#c2bdbd" />
 
             <Space
                 android:layout_width="match_parent"
