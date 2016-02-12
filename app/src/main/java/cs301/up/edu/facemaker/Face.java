@@ -13,13 +13,13 @@ import android.view.SurfaceView;
  * Created by alexabaldwin on 2/7/16.
  */
 public class Face extends SurfaceView {
-    protected int skinColor;
-    protected int eyeColor;
-    protected int hairColor;
-    protected int hairStyleIndex;
+    protected int skinColor = 0xFF04CCAA;
+    protected int eyeColor = 0xFF4285F4;
+    protected int hairColor = 0xFF5F402F;
+    protected int hairStyleIndex = 0;
     protected Path[] hairStyles = new Path[3];
-    protected int eyeStyle;
-    protected int noseStyle;
+    protected int eyeStyle = 2;
+    protected int noseStyle = 2;
     protected Paint whitePaint;
     protected Paint blackPaint;
     protected Paint irisColor;

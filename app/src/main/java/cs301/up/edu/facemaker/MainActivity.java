@@ -141,11 +141,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int color = Color.argb(255, this.redSeekBar.getProgress(), this.greenSeekBar.getProgress(),
                 this.blueSeekBar.getProgress());
 
-        if (hairRadioButton.isChecked()) {
+        if (hairRadioButton.isChecked()  && fromUser) {
             face.hairColor = color;
-        } else if (eyesRadioButton.isChecked()) {
+        } else if (eyesRadioButton.isChecked() && fromUser) {
             face.eyeColor = color;
-        } else if (skinRadioButton.isChecked()) {
+        } else if (skinRadioButton.isChecked() && fromUser) {
             face.skinColor = color;
         }
         face.invalidate();
@@ -163,31 +163,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if(view.getId()==R.id.eyeSpinner) {
-            if (position==1){
-                face.eyeStyle = 1;
-            } else if (position==2){
-                face.eyeStyle = 2;
-            } else if (position==3) {
-                face.eyeStyle = 3;
-            } else face.eyeStyle = 1;
-        } else if (view.getId()==R.id.noseSpinner) {
-            if (position==1){
-                face.noseStyle = 1;
-            } else if (position==2){
-                face.noseStyle = 2;
-            } else if (position==3) {
-                face.noseStyle = 3;
-            } else face.noseStyle = 1;
-        } else if (view.getId()==R.id.hairSpinner) {
-            if (position==1){
-                face.hairStyleIndex = 0;
-            } else if (position==2){
-                face.hairStyleIndex = 1;
-            } else if (position==3) {
-                face.hairStyleIndex = 2;
-            } else face.hairStyleIndex = 0;
+
+        String pos = parent.getItemAtPosition(position).toString();
+        if (pos.equalsIgnoreCase("Regular Eyes")){
+            face.eyeStyle = 1;
+        } else if (pos.equalsIgnoreCase("Diamond Eyes")){
+            face.eyeStyle = 2;
+        } else if (pos.equalsIgnoreCase("Pretty Eyes")) {
+            face.eyeStyle = 3;
+        } else if (pos.equals("Triangle Nose")){
+            face.noseStyle = 1;
+        } else if (pos.equals("Pig Nose")){
+            face.noseStyle = 2;
+        } else if (pos.equals("Regular Nose")) {
+            face.noseStyle = 3;
+        } else if (pos.equals("Spiked Hair")){
+            face.hairStyleIndex = 0;
+        } else if (pos.equals("Mohawk")){
+            face.hairStyleIndex = 1;
+        } else if (pos.equals("Long Hair")) {
+            face.hairStyleIndex = 2;
         }
+
         face.invalidate();
     }
 
