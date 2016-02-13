@@ -1,5 +1,8 @@
 package cs301.up.edu.facemaker;
-//@author Alexa Baldwin
+/**
+ * @author Alexa Baldwin
+ * @version 12 February 2016
+ */
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -42,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected CompoundButton eyesRadioButton;
 
 
+    /**
+     * onCreate - initializes all views and sets their corresponding listeners
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,13 +65,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-
+        /**
+         External Citation
+            Date:       8 February 2016
+            Problem:    Having trouble initializing Spinners
+            Resource:   CS371 Lab 4 @author Steven R. Vegdahl
+            Solution:   Adapted the lab code accordingly to fit this project
+         */
         hairSpinner = (Spinner) findViewById(R.id.hairSpinner);
         String[] hairNames = getResources().getStringArray(R.array.hair_names);
         ArrayAdapter hairAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, hairNames);
         hairAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         hairSpinner.setAdapter(hairAdapter);
+        hairSpinner.setOnItemSelectedListener(this);
 
         eyeSpinner = (Spinner) findViewById(R.id.eyeSpinner);
         String[] eyeNames = getResources().getStringArray(R.array.eye_names);
@@ -72,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 android.R.layout.simple_list_item_1, android.R.id.text1, eyeNames);
         eyeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         eyeSpinner.setAdapter(eyeAdapter);
+        eyeSpinner.setOnItemSelectedListener(this);
 
         noseSpinner = (Spinner) findViewById(R.id.noseSpinner);
         String[] noseNames = getResources().getStringArray(R.array.nose_names);
@@ -79,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 android.R.layout.simple_list_item_1, android.R.id.text1, noseNames);
         noseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         noseSpinner.setAdapter(noseAdapter);
+        noseSpinner.setOnItemSelectedListener(this);
 
         randomFaceButton = (Button) findViewById(R.id.randomFaceButton);
         randomFaceButton.setOnClickListener(this);
@@ -102,8 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         eyesRadioButton = (CompoundButton) findViewById(R.id.eyesRadioButton);
         eyesRadioButton.setOnCheckedChangeListener(this);
-
-    }
+    }//onCreate
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -127,20 +142,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * onClick - performs the randomize action when the Random Face Button is clicked
+     * @param v - view object that will be clicked
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.randomFaceButton) {
             face.randomize();
         }
         face.invalidate();
-    }
+    }//onClick
 
+    /**
+     * onProgressChanged - checks if progress has been changed on each seek bar and
+     * changes the color of the selected radio button according to that RGB value
+     *
+     * @param seekBar - SeekBar object to read from
+     * @param progress - integer that tells the current value fo the seek bar
+     * @param fromUser - boolean to see if the user moves the seek bar
+     */
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+        //converts RGB to integer value
+        /**
+         External Citation
+            Date:       11 February 2016
+            Problem:    Having trouble converting code to integer from RGB values
+            Resource:   Classmate Levi Banks
+            Solution:   Levi suggested the following line of code to convert to integer values
+         */
         int color = Color.argb(255, this.redSeekBar.getProgress(), this.greenSeekBar.getProgress(),
                 this.blueSeekBar.getProgress());
-
+        //checks to see which radio button is currently selected
         if (hairRadioButton.isChecked()  && fromUser) {
             face.hairColor = color;
         } else if (eyesRadioButton.isChecked() && fromUser) {
@@ -149,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             face.skinColor = color;
         }
         face.invalidate();
-    }
+    }//onProgressChanged
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
@@ -161,15 +195,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //not used
     }
 
+    /**
+     * onItemSelected - for each spinner option, changes the face accordingly if that option is
+     * selected
+     * @param parent - tells which spinner we are using
+     * @param view - view to edit
+     * @param position - position in the array of options
+     * @param id
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         String pos = parent.getItemAtPosition(position).toString();
-        if (pos.equalsIgnoreCase("Regular Eyes")){
+        if (pos.equals("Regular Eyes")){
             face.eyeStyle = 1;
-        } else if (pos.equalsIgnoreCase("Diamond Eyes")){
+        } else if (pos.equals("Diamond Eyes")){
             face.eyeStyle = 2;
-        } else if (pos.equalsIgnoreCase("Pretty Eyes")) {
+        } else if (pos.equals("Pretty Eyes")) {
             face.eyeStyle = 3;
         } else if (pos.equals("Triangle Nose")){
             face.noseStyle = 1;
@@ -184,32 +226,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (pos.equals("Long Hair")) {
             face.hairStyleIndex = 2;
         }
-
         face.invalidate();
-    }
+    }//onItemSelected
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         // not used
     }
 
+    /**
+     * onCheckChanged - determines which radio button is currently selected
+     * @param buttonView - radio button to use
+     * @param isChecked - boolean to see if the button is checked or not
+     */
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (buttonView.getId() == R.id.hairRadioButton) {
+
+        if (buttonView.getId() == R.id.hairRadioButton && buttonView.isChecked()) {
             redSeekBar.setProgress(Color.red(face.hairColor));
             blueSeekBar.setProgress(Color.blue(face.hairColor));
             greenSeekBar.setProgress(Color.green(face.hairColor));
-        } else if (buttonView.getId() == R.id.skinRadioButton) {
+        } else if (buttonView.getId() == R.id.skinRadioButton && buttonView.isChecked()) {
             redSeekBar.setProgress(Color.red(face.skinColor));
             blueSeekBar.setProgress(Color.blue(face.skinColor));
             greenSeekBar.setProgress(Color.green(face.skinColor));
-        } else if (buttonView.getId() == R.id.eyesRadioButton) {
+        } else if (buttonView.getId() == R.id.eyesRadioButton && buttonView.isChecked()) {
             redSeekBar.setProgress(Color.red(face.eyeColor));
             blueSeekBar.setProgress(Color.blue(face.eyeColor));
-            greenSeekBar.setProgress(Color.green(face.eyeColor)); //replace hex with whatever I call the color
+            greenSeekBar.setProgress(Color.green(face.eyeColor));
         }
-
     }
 
-}
-//end of each method face.invalidate();
+}//class MainActivity
